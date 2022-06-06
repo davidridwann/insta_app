@@ -1,4 +1,6 @@
 // import 'package:connectivity/connectivity.dart';
+// ignore_for_file: unnecessary_new, avoid_print
+
 import 'dart:io';
 
 import 'package:insta_app/components/dialogs/custom_progress_dialog.dart';

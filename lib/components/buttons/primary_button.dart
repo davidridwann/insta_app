@@ -19,7 +19,7 @@ class PrimaryButton extends StatefulWidget {
   final bool? elevateButtonOnTap;
   final bool? lightButton;
 
-  PrimaryButton({
+  const PrimaryButton({
     Key? key,
     this.text,
     this.onTap,
@@ -97,20 +97,19 @@ class _PrimaryButtonState extends State<PrimaryButton> {
       child: Padding(
         padding: padding!,
         child: Center(
-          child: widget.child != null
-              ? widget.child
-              : Text(
-                  widget.text!,
-                  style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                      fontSize: Responsive(context).f(14),
-                      color: (widget.onTap != null && widget.enable!)
-                          ? textColor
-                          : Themes.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+          child: widget.child ??
+              Text(
+                widget.text!,
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontSize: Responsive(context).f(14),
+                    color: (widget.onTap != null && widget.enable!)
+                        ? textColor
+                        : Themes.white,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
         ),
       ),
     );

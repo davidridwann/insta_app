@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:insta_app/utils/responsive.dart';
 import 'package:insta_app/utils/themes.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +52,7 @@ class PopupMenu extends StatelessWidget {
                 child: Text(
                   e.text!,
                   style: Themes(context, withLineHeight: false).black14!.apply(
-                        color: e.color != null ? e.color : Themes.black,
+                        color: e.color ?? Themes.black,
                       ),
                 ),
               ),

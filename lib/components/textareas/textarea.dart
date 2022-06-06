@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
+
 import 'package:insta_app/components/commons/flat_card.dart';
 import 'package:insta_app/components/dialogs/custom_alert_dialog.dart';
 import 'package:insta_app/image_routing.dart';

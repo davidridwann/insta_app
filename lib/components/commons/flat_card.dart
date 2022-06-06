@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:insta_app/utils/responsive.dart';
 import 'package:flutter/material.dart';
 
@@ -35,10 +37,9 @@ class _FlatCardState extends State<FlatCard> {
       width: widget.width,
       height: widget.height,
       decoration: BoxDecoration(
-        color: widget.color != null ? widget.color : Colors.white,
-        borderRadius: widget.borderRadius != null
-            ? widget.borderRadius
-            : BorderRadius.circular(4.w(context)),
+        color: widget.color ?? Colors.white,
+        borderRadius:
+            widget.borderRadius ?? BorderRadius.circular(4.w(context)),
         border: widget.border,
         boxShadow: widget.shadow != null ? [widget.shadow!] : [],
       ),

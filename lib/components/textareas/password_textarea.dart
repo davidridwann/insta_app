@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:insta_app/components/buttons/ripple_button.dart';
 import 'package:insta_app/components/textareas/textarea.dart';
 import 'package:insta_app/image_routing.dart';

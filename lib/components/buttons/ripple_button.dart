@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
+
 import 'package:insta_app/utils/responsive.dart';
 import 'package:insta_app/utils/themes.dart';
 import 'package:flutter/material.dart';
@@ -75,8 +77,7 @@ class _RippleButtonState extends State<RippleButton> {
       decoration: BoxDecoration(
         border: widget.border,
         color: widget.onTap != null ? color : Themes.stroke,
-        borderRadius: BorderRadius.circular(
-            widget.radius != null ? widget.radius : 6.w(context)),
+        borderRadius: BorderRadius.circular(widget.radius ?? 6.w(context)),
         boxShadow: widget.onTap != null
             ? [
                 if (widget.enableShadow!)
@@ -89,8 +90,7 @@ class _RippleButtonState extends State<RippleButton> {
             : [],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(
-            widget.radius != null ? widget.radius : 6.w(context)),
+        borderRadius: BorderRadius.circular(widget.radius ?? 6.w(context)),
         child: Material(
           color: Colors.transparent,
           child: InkWell(
@@ -100,16 +100,15 @@ class _RippleButtonState extends State<RippleButton> {
             child: Padding(
               padding: padding!,
               child: Center(
-                child: widget.child != null
-                    ? widget.child
-                    : Text(
-                        widget.text!,
-                        style: Themes(context).white14!.apply(
-                              color: widget.onTap != null
-                                  ? textColor
-                                  : Themes.black.withOpacity(0.6),
-                            ),
-                      ),
+                child: widget.child ??
+                    Text(
+                      widget.text!,
+                      style: Themes(context).white14!.apply(
+                            color: widget.onTap != null
+                                ? textColor
+                                : Themes.black.withOpacity(0.6),
+                          ),
+                    ),
               ),
             ),
           ),

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:insta_app/components/buttons/primary_button.dart';
 import 'package:insta_app/utils/responsive.dart';
 import 'package:insta_app/utils/themes.dart';

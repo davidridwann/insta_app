@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, avoid_function_literals_in_foreach_calls, prefer_const_constructors, duplicate_ignore
+
 import 'package:insta_app/utils/responsive.dart';
 import 'package:insta_app/utils/themes.dart';
 import 'package:insta_app/utils/widget_helper.dart';
@@ -95,6 +97,7 @@ class _CustomRadioGroupState extends State<CustomRadioGroup> {
                       ),
                       child: Center(
                         child: AnimatedContainer(
+                          // ignore: prefer_const_constructors
                           duration: Duration(milliseconds: 100),
                           width: e.selected ? 8.w(context) : 24.w(context),
                           height: e.selected ? 8.w(context) : 24.w(context),

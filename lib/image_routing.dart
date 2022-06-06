@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_declarations
+
 class ImgRoute {
   /// ![](http://127.0.0.1:9527/assets/icons/checkbox.svg)
   static final String assetsIconsCheckbox = 'assets/icons/checkbox.svg';
@@ -128,19 +130,4 @@ class ImgRoute {
   /// ![](http://127.0.0.1:9527/assets/icons/ic_write_document.svg)
   static final String assetsIconsIcWriteDocument =
       'assets/icons/ic_write_document.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/pending.png)
-  static final String assetsIconsPending = 'assets/icons/pending.png';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/rejected.png)
-  static final String assetsIconsRejected = 'assets/icons/rejected.png';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/progress.png)
-  static final String assetsIconsProgress = 'assets/icons/progress.png';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/success.png)
-  static final String assetsIconsSuccess = 'assets/icons/accepted.png';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/review.png)
-  static final String assetsIconsReview = 'assets/icons/review.png';
 }

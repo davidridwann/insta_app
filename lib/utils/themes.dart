@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors, unnecessary_const
+
 import 'package:insta_app/utils/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -98,7 +100,7 @@ class Themes {
       textStyle: TextStyle(
         height: height! / size,
         fontSize: Responsive(context).f(size),
-        color: color != null ? color : Themes.black,
+        color: color ?? Themes.black,
         fontWeight: fontWeight,
       ),
     );

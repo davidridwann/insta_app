@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_extensions
+
 import 'package:flutter/widgets.dart';
 
 extension addMargin on Widget {
@@ -46,8 +48,8 @@ extension addMargin on Widget {
   Widget addSymmetricMargin({double? vertical, double? horizontal}) {
     return Container(
       margin: EdgeInsets.symmetric(
-        vertical: vertical != null ? vertical : 0,
-        horizontal: horizontal != null ? horizontal : 0,
+        vertical: vertical ?? 0,
+        horizontal: horizontal ?? 0,
       ),
       child: this,
     );
@@ -61,10 +63,10 @@ extension addMargin on Widget {
   }) {
     return Container(
       margin: EdgeInsets.only(
-        left: left != null ? left : 0,
-        top: top != null ? top : 0,
-        right: right != null ? right : 0,
-        bottom: bottom != null ? bottom : 0,
+        left: left ?? 0,
+        top: top ?? 0,
+        right: right ?? 0,
+        bottom: bottom ?? 0,
       ),
       child: this,
     );
