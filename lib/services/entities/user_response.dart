@@ -2,7 +2,7 @@
 //
 //     final userResponse = userResponseFromJson(jsonString);
 
-// ignore_for_file: prefer_null_aware_operators
+// ignore_for_file: prefer_null_aware_operators, prefer_if_null_operators
 
 import 'dart:convert';
 
@@ -25,14 +25,14 @@ class UserResponse {
   User? data;
 
   factory UserResponse.fromJson(Map<String, dynamic> json) => UserResponse(
-        success: json["success"],
-        message: json["message"],
+        success: json["success"] == null ? null : json["success"],
+        message: json["message"] == null ? null : json["message"],
         data: json["data"] == null ? null : User.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
+        "success": success == null ? null : success,
+        "message": message == null ? null : message,
         "data": data == null ? null : data?.toJson(),
       };
 }

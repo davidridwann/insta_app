@@ -3,8 +3,11 @@
 import 'dart:io';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:insta_app/data/providers/page_provider.dart';
+import 'package:insta_app/data/providers/post_provider.dart';
 import 'package:insta_app/data/providers/token_provider.dart';
 import 'package:insta_app/data/providers/user_provider.dart';
+import 'package:insta_app/ui/layout_screen.dart';
 import 'package:insta_app/ui/login_screen.dart';
 import 'package:insta_app/utils/themes.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +27,10 @@ void main() {
     MultiProvider(
       child: MyApp(),
       providers: [
+        ChangeNotifierProvider(create: (_) => PageProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => TokenProvider()),
+        ChangeNotifierProvider(create: (_) => PostProvider()),
       ],
     ),
   );
@@ -39,6 +44,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/login': (context) => LoginScreen(),
+        '/layout': (context) => LayoutScreen()
       },
       title: 'Insta App',
       debugShowCheckedModeBanner: false,

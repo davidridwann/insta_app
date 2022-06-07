@@ -12,6 +12,7 @@ import 'package:insta_app/data/providers/token_provider.dart';
 import 'package:insta_app/data/providers/user_provider.dart';
 import 'package:insta_app/services/api_interface.dart';
 import 'package:insta_app/services/entities/login_response.dart';
+import 'package:insta_app/ui/layout_screen.dart';
 import 'package:insta_app/ui/register_screen.dart';
 import 'package:insta_app/utils/responsive.dart';
 import 'package:insta_app/utils/themes.dart';
@@ -65,16 +66,18 @@ class _LoginScreenState extends State<LoginScreen> {
       Future.delayed(Duration(seconds: 2), () async {
         String? token = await context.read<TokenProvider>().loadToken();
 
-        setState(() {
-          splashLoading = true;
-        });
-        // if (token != null) {
-        //   print('ok');
-        // } else {
-        //   setState(() {
-        //     splashLoading = true;
-        //   });
-        // }
+        if (token != null) {
+          await context.read<UserProvider>().loadLocalUser();
+          Tools.navigateRefresh(
+            context,
+            LayoutScreen(),
+            "/layout",
+          );
+        } else {
+          setState(() {
+            splashLoading = true;
+          });
+        }
       });
     });
   }
@@ -104,7 +107,11 @@ class _LoginScreenState extends State<LoginScreen> {
           await context.read<UserProvider>().loadNetworkUser(context,
               onFinish: () {
             if (loginReponse.data != null) {
-              print('ok');
+              Tools.navigateRefresh(
+                context,
+                LayoutScreen(),
+                "/layout",
+              );
             }
           });
         } else {

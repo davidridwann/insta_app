@@ -81,4 +81,40 @@ class ApiInterface {
       onOffline: onOffline,
     );
   }
+
+  void getPosts({
+    var header,
+    int? page,
+    VoidCallback? onRequestTimeOut,
+    Function(dynamic error, Response response)? onUnhandleError,
+    Function(Response response)? onFinish,
+    Function()? onOffline,
+  }) {
+    apiHelper!.get(
+      route: "post/get?page=$page",
+      header: header,
+      onFinish: onFinish,
+      onRequestTimeOut: onRequestTimeOut,
+      onUnhandleError: onUnhandleError,
+      onOffline: onOffline,
+    );
+  }
+
+  void doGetDetailPost({
+    int? id,
+    var header,
+    VoidCallback? onRequestTimeOut,
+    Function(dynamic error, Response response)? onUnhandleError,
+    Function(Response response)? onFinish,
+    Function()? onOffline,
+  }) {
+    apiHelper!.get(
+      route: "post/show/$id",
+      header: header,
+      onFinish: onFinish,
+      onRequestTimeOut: onRequestTimeOut,
+      onUnhandleError: onUnhandleError,
+      onOffline: onOffline,
+    );
+  }
 }

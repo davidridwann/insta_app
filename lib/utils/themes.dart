@@ -1,4 +1,6 @@
-// ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors, unnecessary_const
+// ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors, unnecessary_const, unnecessary_import
+
+import 'dart:ui';
 
 import 'package:insta_app/utils/responsive.dart';
 import 'package:flutter/material.dart';
@@ -84,6 +86,7 @@ class Themes {
   TextStyle? black14;
   TextStyle? blackOpacity14;
   TextStyle? loginTitle;
+  TextStyle? appbarTitleGradient;
   TextStyle? appbarTitle;
   TextStyle? primaryBold22;
   TextStyle? primaryBold18;
@@ -155,6 +158,22 @@ class Themes {
     loginTitle = GoogleFonts.cookie(
       textStyle: TextStyle(
           fontSize: Responsive(context).f(50),
+          fontWeight: FontWeight.bold,
+          foreground: Paint()
+            ..shader = LinearGradient(
+              // ignore: prefer_const_literals_to_create_immutables
+              colors: <Color>[
+                Colors.pinkAccent,
+                Colors.deepPurpleAccent,
+                Colors.red
+                //add more color here.
+              ],
+            ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 100.0))),
+    );
+
+    appbarTitleGradient = GoogleFonts.cookie(
+      textStyle: TextStyle(
+          fontSize: Responsive(context).f(26),
           fontWeight: FontWeight.bold,
           foreground: Paint()
             ..shader = LinearGradient(

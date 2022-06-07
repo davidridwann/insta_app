@@ -43,8 +43,11 @@ class User {
   User({
     this.id,
     this.name,
-    // ignore: non_constant_identifier_names
     this.username,
+    this.image,
+    this.pronouns,
+    this.website,
+    this.bio,
     this.email,
     this.createdAt,
     this.updatedAt,
@@ -53,6 +56,10 @@ class User {
   int? id;
   String? name;
   String? username;
+  String? image;
+  String? pronouns;
+  String? website;
+  String? bio;
   String? email;
   String? createdAt;
   DateTime? updatedAt;
@@ -61,6 +68,10 @@ class User {
         id: json["id"],
         name: json["name"],
         username: json["username"],
+        image: json["image"],
+        pronouns: json["pronouns"],
+        website: json["website"],
+        bio: json["bio"],
         email: json["email"],
         createdAt: json["created_at"],
         updatedAt: json["updated_at"] == null
@@ -72,6 +83,10 @@ class User {
         "id": id,
         "name": name,
         "username": username,
+        "image": image,
+        "pronouns": pronouns,
+        "website": website,
+        "bio": bio,
         "email": email,
         "created_at": createdAt,
         "updated_at": updatedAt == null ? null : updatedAt?.toIso8601String(),
