@@ -89,32 +89,17 @@ flutter:
     - assets/icons/ic_clock_list.svg
     - assets/icons/ic_close.svg
     - assets/icons/ic_cross.svg
-    - assets/icons/ic_document.svg
-    - assets/icons/ic_document_done.svg
-    - assets/icons/ic_dollar.svg
-    - assets/icons/ic_dollar_active.svg
     - assets/icons/ic_done.svg
-    - assets/icons/ic_employee.svg
     - assets/icons/ic_eye_close.svg
     - assets/icons/ic_eye_open.svg
     - assets/icons/ic_filter.svg
     - assets/icons/ic_house.svg
     - assets/icons/ic_key.svg
-    - assets/icons/ic_lamp.svg
-    - assets/icons/ic_map_arker.svg
     - assets/icons/ic_menu.svg
     - assets/icons/ic_menu_dots.svg
     - assets/icons/ic_notification_bell.svg
     - assets/icons/ic_profile.svg
-    - assets/icons/ic_scan_qr.svg
-    - assets/icons/ic_scanner.svg
     - assets/icons/ic_search.svg
-    - assets/icons/ic_star_empty_secondary.svg
-    - assets/icons/ic_star_filled_secondary.svg
-    - assets/icons/ic_star_half_filled_secondary.svg
-    - assets/icons/ic_task.svg
-    - assets/icons/ic_ticket.svg
-    - assets/icons/ic_write_document.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

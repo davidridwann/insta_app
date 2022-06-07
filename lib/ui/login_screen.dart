@@ -12,6 +12,7 @@ import 'package:insta_app/data/providers/token_provider.dart';
 import 'package:insta_app/data/providers/user_provider.dart';
 import 'package:insta_app/services/api_interface.dart';
 import 'package:insta_app/services/entities/login_response.dart';
+import 'package:insta_app/ui/register_screen.dart';
 import 'package:insta_app/utils/responsive.dart';
 import 'package:insta_app/utils/themes.dart';
 import 'package:insta_app/utils/tools.dart';
@@ -64,13 +65,16 @@ class _LoginScreenState extends State<LoginScreen> {
       Future.delayed(Duration(seconds: 2), () async {
         String? token = await context.read<TokenProvider>().loadToken();
 
-        if (token != null) {
-          print('ok');
-        } else {
-          setState(() {
-            splashLoading = true;
-          });
-        }
+        setState(() {
+          splashLoading = true;
+        });
+        // if (token != null) {
+        //   print('ok');
+        // } else {
+        //   setState(() {
+        //     splashLoading = true;
+        //   });
+        // }
       });
     });
   }
@@ -139,24 +143,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     curve: Curves.easeInOut,
                     duration: Duration(milliseconds: 300),
                     height: splashLoading ? 40.hp(context) : 100.hp(context),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Insta App",
-                          textAlign: TextAlign.center,
-                          style: Themes(context).blackBold14,
-                        ).addSymmetricMargin(
-                          vertical: 8.w(context),
-                        ),
-                      ],
+                    child: Container(
+                      child: Text(
+                        "Insta App",
+                        textAlign: TextAlign.center,
+                        style: Themes(context).loginTitle,
+                      )
+                          .addSymmetricMargin(
+                            vertical: 8.w(context),
+                          )
+                          .addMarginTop(
+                              splashLoading ? 160.h(context) : 70.h(context)),
                     ),
                   ),
                   AnimatedContainer(
                     alignment: Alignment.center,
                     curve: Curves.easeInOut,
                     duration: Duration(milliseconds: 300),
-                    height: splashLoading ? 60.hp(context) : 0,
+                    height: splashLoading ? 80.hp(context) : 0,
                     decoration: BoxDecoration(
                       color: Themes.white,
                       borderRadius: BorderRadius.only(
@@ -175,85 +179,46 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Email",
-                              style: Themes(context).blackBold12,
-                            ),
                             TextArea(
                               controller: textControllers["email"],
-                              hint: "masukkan email anda",
+                              hint: "Email",
                               inputType: TextInputType.emailAddress,
                             ).addMarginTop(4.h(context)),
-                            Text(
-                              "Password",
-                              style: Themes(context).blackBold12,
-                            ).addMarginTop(16.h(context)),
                             PasswordTextarea(
                               controller: textControllers["password"]!,
-                              hint: "masukkan password",
+                              hint: "Password",
                             ).addMarginTop(4.h(context)),
                             PrimaryButton(
                               enable: enable,
                               onTap: () {
                                 Tools.showProgressDialog(context);
                                 doLogin();
-                                // showDialog(
-                                //   context: context,
-                                //   child: OptionsDialog(
-                                //     title: "Login Sebagai",
-                                //     options: [
-                                //       "GA",
-                                //       "Admin Vendor",
-                                //       "Pegawai Vendor",
-                                //       "Pelapor",
-                                //     ],
-                                //     onOptionSelected: (value) {
-                                //       Navigator.pop(context);
-
-                                //       switch (value) {
-                                //         case "GA":
-                                //           context
-                                //               .read<RoleProvider>()
-                                //               .changeRole("ga");
-                                //           Tools.navigatePush(
-                                //             context,
-                                //             HomeGeneralAffair(),
-                                //           );
-                                //           break;
-                                //         case "Admin Vendor":
-                                //           context
-                                //               .read<RoleProvider>()
-                                //               .changeRole("av");
-                                //           Tools.navigatePush(
-                                //             context,
-                                //             HomeAdminVendor(),
-                                //           );
-                                //           break;
-                                //         case "Pegawai Vendor":
-                                //           context
-                                //               .read<RoleProvider>()
-                                //               .changeRole("ev");
-                                //           Tools.navigatePush(
-                                //             context,
-                                //             HomeEmployeeVendor(),
-                                //           );
-                                //           break;
-                                //         case "Pelapor":
-                                //           context
-                                //               .read<RoleProvider>()
-                                //               .changeRole("re");
-                                //           Tools.navigatePush(
-                                //             context,
-                                //             HomeReporter(),
-                                //           );
-                                //           break;
-                                //       }
-                                //     },
-                                //   ),
-                                // );
                               },
-                              text: "MASUK",
+                              text: "Log In",
                             ).addMarginTop(24.h(context)),
+                            Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Don't have an account?",
+                                    textAlign: TextAlign.center,
+                                    style: Themes(context).gray12,
+                                  ).addMarginRight(5.h(context)),
+                                  InkWell(
+                                    child: Text(
+                                      "Sign Up",
+                                      textAlign: TextAlign.center,
+                                      style: Themes(context).primaryBold12,
+                                    ),
+                                    onTap: () {
+                                      Tools.navigatePush(
+                                          context, RegisterScreen());
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ).addMarginTop(10.h(context))
                           ],
                         ),
                       ),

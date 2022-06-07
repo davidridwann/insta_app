@@ -46,25 +46,8 @@ class ImgRoute {
   /// ![](http://127.0.0.1:9527/assets/icons/ic_cross.svg)
   static final String assetsIconsIcCross = 'assets/icons/ic_cross.svg';
 
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_document.svg)
-  static final String assetsIconsIcDocument = 'assets/icons/ic_document.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_document_done.svg)
-  static final String assetsIconsIcDocumentDone =
-      'assets/icons/ic_document_done.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_dollar.svg)
-  static final String assetsIconsIcDollar = 'assets/icons/ic_dollar.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_dollar_active.svg)
-  static final String assetsIconsIcDollarActive =
-      'assets/icons/ic_dollar_active.svg';
-
   /// ![](http://127.0.0.1:9527/assets/icons/ic_done.svg)
   static final String assetsIconsIcDone = 'assets/icons/ic_done.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_employee.svg)
-  static final String assetsIconsIcEmployee = 'assets/icons/ic_employee.svg';
 
   /// ![](http://127.0.0.1:9527/assets/icons/ic_eye_close.svg)
   static final String assetsIconsIcEyeClose = 'assets/icons/ic_eye_close.svg';
@@ -80,9 +63,6 @@ class ImgRoute {
 
   /// ![](http://127.0.0.1:9527/assets/icons/ic_key.svg)
   static final String assetsIconsIcKey = 'assets/icons/ic_key.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_lamp.svg)
-  static final String assetsIconsIcLamp = 'assets/icons/ic_lamp.svg';
 
   /// ![](http://127.0.0.1:9527/assets/icons/ic_map_arker.svg)
   static final String assetsIconsIcMapArker = 'assets/icons/ic_map_arker.svg';
@@ -100,34 +80,6 @@ class ImgRoute {
   /// ![](http://127.0.0.1:9527/assets/icons/ic_profile.svg)
   static final String assetsIconsIcProfile = 'assets/icons/ic_profile.svg';
 
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_scan_qr.svg)
-  static final String assetsIconsIcScanQr = 'assets/icons/ic_scan_qr.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_scanner.svg)
-  static final String assetsIconsIcScanner = 'assets/icons/ic_scanner.svg';
-
   /// ![](http://127.0.0.1:9527/assets/icons/ic_search.svg)
   static final String assetsIconsIcSearch = 'assets/icons/ic_search.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_star_empty_secondary.svg)
-  static final String assetsIconsIcStarEmptySecondary =
-      'assets/icons/ic_star_empty_secondary.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_star_filled_secondary.svg)
-  static final String assetsIconsIcStarFilledSecondary =
-      'assets/icons/ic_star_filled_secondary.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_star_half_filled_secondary.svg)
-  static final String assetsIconsIcStarHalfFilledSecondary =
-      'assets/icons/ic_star_half_filled_secondary.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_task.svg)
-  static final String assetsIconsIcTask = 'assets/icons/ic_task.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_ticket.svg)
-  static final String assetsIconsIcTicket = 'assets/icons/ic_ticket.svg';
-
-  /// ![](http://127.0.0.1:9527/assets/icons/ic_write_document.svg)
-  static final String assetsIconsIcWriteDocument =
-      'assets/icons/ic_write_document.svg';
 }

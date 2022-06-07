@@ -16,8 +16,8 @@ class Tools {
       barrierDismissible: false,
       context: context,
       builder: (dialogContext) => CustomProgressDialog(
-        title: "Memuat",
-        message: "Tunggu sebentar...",
+        title: "Loading",
+        message: "Please wait...",
       ),
     );
   }

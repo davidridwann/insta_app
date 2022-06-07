@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 class Themes {
   BuildContext context;
   static Color black = Color(0xff2A2A2A);
-  static Color primary = Color(0xff202F67);
+  static Color primary = Color(0xff3498db);
   static Color darkPrimary = Color(0xff131C3E);
   static Color secondary = Color(0xffEC4067);
   static Color darkSecondary = Color(0xffE31745);
@@ -32,18 +32,18 @@ class Themes {
   static Color transparent = Color(0x00ffffff);
 
   static MaterialColor primaryMaterialColor = MaterialColor(
-    0xff202F67,
+    0xff3498db,
     const <int, Color>{
-      50: const Color(0xff202F67),
-      100: const Color(0xff202F67),
-      200: const Color(0xff202F67),
-      300: const Color(0xff202F67),
-      400: const Color(0xff202F67),
-      500: const Color(0xff202F67),
-      600: const Color(0xff202F67),
-      700: const Color(0xff202F67),
-      800: const Color(0xff202F67),
-      900: const Color(0xff202F67),
+      50: const Color(0xff3498db),
+      100: const Color(0xff3498db),
+      200: const Color(0xff3498db),
+      300: const Color(0xff3498db),
+      400: const Color(0xff3498db),
+      500: const Color(0xff3498db),
+      600: const Color(0xff3498db),
+      700: const Color(0xff3498db),
+      800: const Color(0xff3498db),
+      900: const Color(0xff3498db),
     },
   );
 
@@ -83,6 +83,7 @@ class Themes {
   TextStyle? black12;
   TextStyle? black14;
   TextStyle? blackOpacity14;
+  TextStyle? loginTitle;
   TextStyle? appbarTitle;
   TextStyle? primaryBold22;
   TextStyle? primaryBold18;
@@ -149,6 +150,22 @@ class Themes {
         color: Themes.primary,
         fontWeight: FontWeight.bold,
       ),
+    );
+
+    loginTitle = GoogleFonts.cookie(
+      textStyle: TextStyle(
+          fontSize: Responsive(context).f(50),
+          fontWeight: FontWeight.bold,
+          foreground: Paint()
+            ..shader = LinearGradient(
+              // ignore: prefer_const_literals_to_create_immutables
+              colors: <Color>[
+                Colors.pinkAccent,
+                Colors.deepPurpleAccent,
+                Colors.red
+                //add more color here.
+              ],
+            ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 100.0))),
     );
 
     appbarTitle = GoogleFonts.poppins(
