@@ -1,15 +1,20 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:insta_app/components/buttons/primary_button.dart';
 import 'package:insta_app/components/commons/flat_card.dart';
 import 'package:insta_app/components/commons/popup_menu.dart';
 import 'package:insta_app/components/dialogs/question_dialog.dart';
 import 'package:insta_app/data/providers/page_provider.dart';
+import 'package:insta_app/data/providers/post_provider.dart';
 import 'package:insta_app/data/providers/token_provider.dart';
 import 'package:insta_app/data/providers/user_provider.dart';
 import 'package:insta_app/image_routing.dart';
+import 'package:insta_app/services/api_interface.dart';
+import 'package:insta_app/services/api_service.dart';
 import 'package:insta_app/services/entities/login_response.dart';
+import 'package:insta_app/services/entities/post_response.dart';
 import 'package:insta_app/ui/login_screen.dart';
 import 'package:insta_app/utils/responsive.dart';
 import 'package:insta_app/utils/themes.dart';
@@ -26,9 +31,20 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  ApiInterface? apiInterface;
+
   @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(const Duration(seconds: 2), () async {
+      context.read<PostProvider>().getPosts(context, resetPage: true);
+    });
+  }
+
   Widget build(BuildContext context) {
     User? user = context.watch<UserProvider>().user;
+    List<Post> posts = context.watch<PostProvider>().posts;
 
     String? name = '-';
     String? username = '-';
@@ -124,7 +140,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Column(
                                   children: [
                                     Text(
-                                      "1",
+                                      "0",
                                       style: Themes(context).blackBold16,
                                     )
                                         .addMarginTop(4.h(context))
@@ -140,7 +156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Column(
                                   children: [
                                     Text(
-                                      "1",
+                                      "0",
                                       style: Themes(context).blackBold16,
                                     )
                                         .addMarginTop(4.h(context))
@@ -156,7 +172,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Column(
                                   children: [
                                     Text(
-                                      "1",
+                                      "0",
                                       style: Themes(context).blackBold16,
                                     )
                                         .addMarginTop(4.h(context))
@@ -178,21 +194,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   style: Themes(context).black12,
                                 )
                                     .addMarginLeft(10.h(context))
-                                    .addMarginBottom(30.h(context)),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                      right: 16.w(context),
-                                      left: 66.w(context),
-                                      bottom: 20.w(context)),
-                                  child: PrimaryButton(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 40.w(context),
-                                      vertical: 10.w(context),
-                                    ),
-                                    onTap: () {},
-                                    text: "Edit Profile",
-                                  ),
-                                ),
+                                    .addMarginBottom(30.h(context))
+                                    .addMarginTop(10.h(context)),
                               ],
                             )
                           ],
@@ -214,10 +217,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
                       return Container(
-                        color: Colors.grey,
-                      );
+                          color: Colors.grey,
+                          child: CachedNetworkImage(
+                              imageUrl: ApiService.realUrl + posts[index].post!,
+                              width: MediaQuery.of(context).size.width,
+                              height: 250.h(context),
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => const Center(
+                                    child: Text('Loading..'),
+                                  ).addMarginTop(45.h(context)),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error)));
                     },
-                    childCount: 10,
+                    childCount: posts.length,
                   ),
                 )
               ],

@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:insta_app/components/commons/flat_card.dart';
 import 'package:insta_app/components/commons/popup_menu.dart';
 import 'package:insta_app/components/dialogs/question_dialog.dart';
 import 'package:insta_app/image_routing.dart';
+import 'package:insta_app/services/api_service.dart';
 import 'package:insta_app/services/entities/post_response.dart';
 import 'package:insta_app/utils/responsive.dart';
 import 'package:insta_app/utils/themes.dart';
@@ -15,12 +18,18 @@ class PostItem extends StatefulWidget {
   final Post? item;
   final bool showOption;
   final VoidCallback? onDelete;
+  final VoidCallback? onLike;
+  final VoidCallback? onComment;
+  final VoidCallback? onEdit;
 
   const PostItem({
     Key? key,
     this.onTap,
     this.showOption = false,
     this.onDelete,
+    this.onLike,
+    this.onComment,
+    this.onEdit,
     this.item,
   }) : super(key: key);
 
@@ -33,9 +42,11 @@ class _PostItemState extends State<PostItem> {
   Widget build(BuildContext context) {
     bool optionShow = widget.showOption;
     VoidCallback? doDelete = widget.onDelete;
+    VoidCallback? doLike = widget.onLike;
+    VoidCallback? doEdit = widget.onEdit;
+    VoidCallback? doComment = widget.onComment;
 
     return FlatCard(
-      border: Border.all(color: Themes.stroke),
       child: Material(
         borderRadius: BorderRadius.circular(4.w(context)),
         color: Colors.transparent,
@@ -50,12 +61,11 @@ class _PostItemState extends State<PostItem> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      widget.item == null ? "" : widget.item!.caption!,
+                      widget.item == null ? "" : widget.item!.created_by!,
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                           fontSize: 12.f(context),
-                          color: Themes.red,
-                          letterSpacing: 2.0,
+                          color: Themes.black,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -65,9 +75,14 @@ class _PostItemState extends State<PostItem> {
                         icon: ImgRoute.assetsIconsIcMenu,
                         menus: [
                           MenuItem(
-                            text: "Hapus",
+                            text: "Delete",
                             value: "delete",
                             color: Themes.red,
+                          ),
+                          MenuItem(
+                            text: "Edit",
+                            value: "edit",
+                            color: Themes.black,
                           ),
                         ],
                         onSelected: (value) {
@@ -76,10 +91,10 @@ class _PostItemState extends State<PostItem> {
                               showDialog(
                                 context: context,
                                 builder: (dialogContext) => QuestionDialog(
-                                  title: "Hapus Barang",
-                                  message: "Yakin ingin menghapus barang?",
-                                  positiveText: "Hapus",
-                                  negativeText: "Batal",
+                                  title: "Delete Post",
+                                  message: "Are you sure you want delete post?",
+                                  positiveText: "OK",
+                                  negativeText: "CANCEL",
                                   negativeAction: true,
                                   onConfirm: () {
                                     doDelete!();
@@ -90,78 +105,85 @@ class _PostItemState extends State<PostItem> {
                                 ),
                               );
                               break;
+                            case "edit":
+                              doEdit!();
+                              break;
                           }
                         },
                       ),
                   ],
                 ),
-                Text(
-                  widget.item == null ? "" : widget.item!.caption!,
-                  style: Themes(context).blackBold14,
-                ),
-                Text(
-                  widget.item == null ? "" : widget.item!.caption!,
-                  style: Themes(context).black14,
-                ),
+                SizedBox(
+                    child: CachedNetworkImage(
+                        imageUrl: ApiService.realUrl + widget.item!.post!,
+                        width: MediaQuery.of(context).size.width,
+                        height: 250.h(context),
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => const Center(
+                              child: Text('Loading..'),
+                            ).addMarginTop(45.h(context)),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error))),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      widget.item == null
-                          ? ""
-                          : widget.item!.caption!.toString() + " total stok",
-                      style: Themes(context).gray12,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        left: 8.w(context),
-                        right: 8.w(context),
-                      ),
-                      width: 4.w(context),
-                      height: 4.w(context),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Themes.grey,
-                      ),
-                    ),
-                    Text(
-                      widget.item == null
-                          ? ""
-                          : "Satuan " + widget.item!.caption!,
-                      style: Themes(context).gray12,
-                    ),
+                    widget.item!.hide_like == false
+                        ? InkWell(
+                            onTap: () {
+                              doLike!();
+                            },
+                            borderRadius: BorderRadius.circular(50),
+                            child: SvgPicture.asset(
+                              ImgRoute.assetsIconsIcLike,
+                              width: 24.w(context),
+                              height: 24.w(context),
+                              color: widget.item!.is_like! == true
+                                  ? Themes.red
+                                  : Themes.black.withOpacity(0.5),
+                            ),
+                          ).addMarginRight(10.w(context))
+                        : Container(),
+                    widget.item!.hide_comment == false
+                        ? InkWell(
+                            onTap: () {
+                              doComment!();
+                            },
+                            child: SvgPicture.asset(
+                              ImgRoute.assetsIconsIcComment,
+                              width: 26.w(context),
+                              height: 26.w(context),
+                              color: Themes.black.withOpacity(0.5),
+                            ),
+                          )
+                        : Container(),
                   ],
                 ).addMarginTop(8.h(context)),
+                widget.item!.hide_like == false
+                    ? Text(
+                        widget.item!.total_like!.toString() + ' Likes',
+                        style: Themes(context).blackBold12,
+                      ).addMarginRight(5.w(context))
+                    : Container(),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      widget.item == null
-                          ? ""
-                          : DateFormat("d MMM yyyy", "id")
-                              .format(widget.item!.createdAt!),
-                      style: Themes(context).gray12,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        left: 8.w(context),
-                        right: 8.w(context),
-                      ),
-                      width: 4.w(context),
-                      height: 4.w(context),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Themes.grey,
-                      ),
-                    ),
+                      widget.item!.created_by!,
+                      style: Themes(context).blackBold12,
+                    ).addMarginRight(5.w(context)),
                     Text(
-                      widget.item != null
-                          ? "Spesifikasi " + widget.item!.caption!
-                          : '-',
+                      widget.item!.caption!,
                       style: Themes(context).gray12,
                     ),
                   ],
-                ).addMarginTop(4.h(context))
+                ).addMarginTop(4.h(context)),
+                Text(
+                  widget.item == null
+                      ? ""
+                      : DateFormat("d MMM yyyy", "id")
+                          .format(widget.item!.createdAt!),
+                  style: Themes(context).gray12,
+                )
               ],
             ),
           ),

@@ -104,10 +104,13 @@ class Post {
     this.id,
     this.post,
     this.caption,
+    this.created_by,
+    this.total_like,
     this.hide_comment,
     this.hide_like,
     this.is_archive,
     this.is_edit,
+    this.is_like,
     this.createdAt,
     this.updatedAt,
   });
@@ -115,10 +118,13 @@ class Post {
   int? id;
   String? post;
   String? caption;
+  String? created_by;
+  int? total_like;
   bool? hide_comment;
   bool? hide_like;
   bool? is_archive;
   bool? is_edit;
+  bool? is_like;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -126,10 +132,13 @@ class Post {
         id: json["id"] ?? '-',
         post: json["post"] ?? null,
         caption: json["caption"] ?? null,
+        created_by: json["created_by"] ?? null,
+        total_like: json["total_like"] ?? null,
         hide_comment: json["hide_comment"] ?? null,
         hide_like: json["hide_like"] ?? null,
         is_archive: json["is_archive"] ?? null,
         is_edit: json["is_edit"] ?? null,
+        is_like: json["is_like"] ?? null,
         createdAt: json["created_at"] == null
             ? null
             : DateTime.parse(json["created_at"]),
@@ -142,10 +151,13 @@ class Post {
         "id": id ?? null,
         "post": post ?? null,
         "caption": caption ?? null,
+        "total_like": total_like ?? null,
+        "created_by": created_by ?? null,
         "hide_comment": hide_comment ?? null,
         "hide_like": hide_like ?? null,
         "is_archive": is_archive ?? null,
         "is_edit": is_edit ?? null,
+        "is_like": is_like ?? null,
         "created_at": createdAt == null ? null : createdAt!.toIso8601String(),
         "updated_at": updatedAt == null ? null : updatedAt!.toIso8601String(),
       };

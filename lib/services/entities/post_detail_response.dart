@@ -2,6 +2,8 @@
 //
 //     final postDetailResponse = postDetailResponseFromJson(jsonString);
 
+// ignore_for_file: unnecessary_null_in_if_null_operators, non_constant_identifier_names
+
 import 'dart:convert';
 
 PostDetailResponse postDetailResponseFromJson(String str) =>
@@ -38,40 +40,40 @@ class PostDetailResponse {
 class Data {
   Data({
     this.id,
-    this.name,
-    this.merk,
-    this.specification,
-    this.formula,
-    this.stock,
-    this.type,
-    this.unit,
-    this.status,
+    this.post,
+    this.caption,
+    this.created_by,
+    this.total_like,
+    this.hide_comment,
+    this.hide_like,
+    this.is_archive,
+    this.is_edit,
     this.createdAt,
     this.updatedAt,
   });
 
   int? id;
-  String? name;
-  String? merk;
-  String? specification;
-  String? formula;
-  String? type;
-  int? stock;
-  String? unit;
-  String? status;
+  String? post;
+  String? caption;
+  String? created_by;
+  int? total_like;
+  bool? hide_comment;
+  bool? hide_like;
+  bool? is_archive;
+  bool? is_edit;
   DateTime? createdAt;
   DateTime? updatedAt;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["id"] ?? '-',
-        name: json["name"] ?? '-',
-        merk: json["merk"] ?? '-',
-        specification: json["specification"],
-        formula: json["formula"] ?? '-',
-        type: json["type"] ?? '-',
-        stock: json["stock"] ?? '-',
-        unit: json["unit"] ?? '-',
-        status: json["status"] ?? '-',
+        post: json["post"] ?? null,
+        caption: json["caption"] ?? null,
+        created_by: json["created_by"] ?? null,
+        total_like: json["total_like"] ?? null,
+        hide_comment: json["hide_comment"] ?? null,
+        hide_like: json["hide_like"] ?? null,
+        is_archive: json["is_archive"] ?? null,
+        is_edit: json["is_edit"] ?? null,
         createdAt: json["created_at"] == null
             ? null
             : DateTime.parse(json["created_at"]),
@@ -81,15 +83,15 @@ class Data {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "merk": merk,
-        "specification": specification,
-        "formula": formula,
-        "type": type,
-        "stock": stock,
-        "unit": unit,
-        "status": status,
+        "id": id ?? null,
+        "post": post ?? null,
+        "caption": caption ?? null,
+        "created_by": created_by ?? null,
+        "total_like": total_like ?? null,
+        "hide_comment": hide_comment ?? null,
+        "hide_like": hide_like ?? null,
+        "is_archive": is_archive ?? null,
+        "is_edit": is_edit ?? null,
         "created_at": createdAt == null ? null : createdAt!.toIso8601String(),
         "updated_at": updatedAt == null ? null : updatedAt!.toIso8601String(),
       };

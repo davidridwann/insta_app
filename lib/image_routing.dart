@@ -82,4 +82,10 @@ class ImgRoute {
 
   /// ![](http://127.0.0.1:9527/assets/icons/ic_search.svg)
   static final String assetsIconsIcSearch = 'assets/icons/ic_search.svg';
+
+  /// ![](http://127.0.0.1:9527/assets/icons/ic_like.svg)
+  static final String assetsIconsIcLike = 'assets/icons/ic_like.svg';
+
+  /// ![](http://127.0.0.1:9527/assets/icons/ic_comment.svg)
+  static final String assetsIconsIcComment = 'assets/icons/ic_comment.svg';
 }
